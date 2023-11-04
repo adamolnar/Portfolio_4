@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['portfolio4-4e23d6cdeeab.herokuapp.com','8000-adamolnar-portfol
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'django_summernote',
     'app',
 ]
 
