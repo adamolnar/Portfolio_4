@@ -46,7 +46,7 @@ h6 span{
 }
 [type="checkbox"]:checked,
 [type="checkbox"]:not(:checked){
-  position: absolute;
+  position: static;
   left: -9999px;
 }
 .checkbox:checked + label,
@@ -286,4 +286,33 @@ h6 span{
 	height: 26px;
 	width: auto;
 	display: block;
+}
+
+.mt-3 {
+  color: black;
+  margin-top: 3rem !important;
+}
+
+.link {
+  color: #ff0000;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #04AA6D;
+  text-decoration: underline;
+}
+
+#welcome {
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.col-12.text-center.align-self-center.py-5 {
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+}
+
+.card-3d-wrap {
+  margin-top: 40px;
 }
