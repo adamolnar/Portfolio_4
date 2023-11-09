@@ -17,18 +17,18 @@
 {% block content %}
 
 <div class="container">
-    <!-- <div class="row full-height justify-content-center"> -->
+    <div class="row ">
         <div class="col-12 text-center align-self-center py-5">
             <div class="section pb-5 pt-5 pt-sm-2 text-center">
                 <div class="col-md-8 mt-3 offset-md-2">
-            <p id="welcome">{% blocktrans %}Welcome back to the blog. If you don't have an account please <a
-                class="link" href="{{ signup_url }}">Sign Up</a> instead.{% endblocktrans %}</p>
-        </div>
+                    <h3>{% trans "Log In" %}</h3>
+                    <p id="welcome">{% blocktrans %}Welcome back to the blog. If you don't have an account please               
+                        <a class="link" href="{{ signup_url }}">Register</a> instead.{% endblocktrans %}</p>
+                </div>
             <div class="card-3d-wrap mx-auto">
                 <div class="card-3d-wrapper">
                     <div class="card-front">
                         <div class="center-wrap">
-                            <h4 class="mb-4 pb-3">Log In</h4>
                             <form class="login" method="POST" action="{% url 'account_login' %}">
                                 {% csrf_token %}
                                 {{ form.as_p }}
