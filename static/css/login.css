@@ -46,46 +46,6 @@ h6 span{
 .full-height{
   min-height: 100vh;
 }
-[type="checkbox"]:checked,
-[type="checkbox"]:not(:checked){
-  position: static;
-  left: -9999px;
-}
-.checkbox:checked + label,
-.checkbox:not(:checked) + label{
-  position: relative;
-  display: block;
-  text-align: center;
-  width: 60px;
-  height: 16px;
-  border-radius: 8px;
-  padding: 0;
-  margin: 10px auto;
-  cursor: pointer;
-  background-color: #d3d3d3;
-}
-.checkbox:checked + label:before,
-.checkbox:not(:checked) + label:before{
-  position: absolute;
-  display: block;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  color: white;
-  background-color: #212529;
-  font-family: 'unicons';
-  content: '\eb4f';
-  z-index: 20;
-  top: -10px;
-  left: -10px;
-  line-height: 36px;
-  text-align: center;
-  font-size: 24px;
-  transition: all 0.5s ease;
-}
-.checkbox:checked + label:before {
-  transform: translateX(44px) rotate(-360deg);
-}
 
 
 .card-3d-wrap {
@@ -115,12 +75,7 @@ h6 span{
   border-radius: 6px;
   left: 0;
   top: 0;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
+
 }
 .card-back {
   transform: rotateY(180deg);
@@ -387,4 +342,28 @@ h3, .h3 {
 #custome-button {
  
   color: white;
+}
+
+div#error-msg {
+  height: fit-content;
+  border-style: solid;
+  border-color: #ff0000;
+}
+
+svg {
+  height: 30px;
+  float: left;
+  padding: 5px;
+  color: #ff0000;
+  margin-right: 5px;
+}
+
+.my-4 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.error-p {
+  padding: 2px ;
+  margin: 0;
 }

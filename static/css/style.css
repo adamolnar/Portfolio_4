@@ -10831,3 +10831,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.active {
+  color: white;
+}

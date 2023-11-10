@@ -108,7 +108,6 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-ACCOUNT_EMAIL_VERIFICATION = "none"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -157,4 +156,13 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Default Account email validation
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_SESSION_REMEMBER = True
 
+# Custom ErrorList form for signup.html
+ACCOUNT_FORMS = {
+  'signup': 'users.forms.CustomSignUpForm'
+}

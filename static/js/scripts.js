@@ -18,3 +18,10 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+
+
+// Change signup.from div style after openning error mesages
+
+document.querySelector(".btn").addEventListener("submit", () => {
+  document.querySelector("#card").classList.toggle("open")
+})

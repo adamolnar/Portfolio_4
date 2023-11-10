@@ -16,7 +16,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 mt-3 offset-md-2">
-      <h3>{% trans "Register" %}</h3>
+      <h3>{% trans "Create your account" %}</h3>
 
       <p id="welcome">{% blocktrans %}Welcome back to the blog. Do you already have an account? Then please <a class="link"
           href="{{ login_url }}">Log In</a> instead.{% endblocktrans %}</p>
@@ -27,10 +27,10 @@
         <div class="card-front">
             <div class="center-wrap">
                 
-                <form class="signup" method="POST" action="{% url 'account_signup' %}">
+                <form class="signup" method="post" action="{% url 'account_signup' %}" id="signup_form">
                     {% csrf_token %}
 
-                    <input type="hidden" name="csrfmiddlewaretoken" value="R7NRwT3M4z7PmMJV2Ldhzc55OpkSAKHOvYK3JzYwsu65noq6QJDsR2uQQyYRfMm8" />
+                    <input type="hidden" name="remember" value="true" />
                     <div class="-space-y-px rounded-md shadow-sm">
                       <p>
                         {{ form.username.errors | safe }}
@@ -50,7 +50,7 @@
                       <p>
                         {{ form.password2.errors | safe }}
                         <label for="id_password" class="form-inline">Password repeat:</label>
-                        {% render_field form.password2 id="password2" name="password2" type="password" autocomplete="current-password" required="True" class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Cofirm Password" %}
+                        {% render_field form.password2 id="password2" name="password2"  placeholder="Cofirm Password" type="password" autocomplete="current-password" required="True" class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %}
                       </p>
                     </div>
 
