@@ -22,8 +22,8 @@
           href="{{ login_url }}">Log In</a> instead.{% endblocktrans %}</p>
     </div>
   </div>
-  <div class="card-3d-wrap mx-auto " id="card">
-    <div class="card-3d-wrapper">
+  <div class="my-row card-3d-wrap mx-auto " id="card">
+    <div class="my-col  card-3d-wrapper">
         <div class="card-front">
             <div class="center-wrap">
                 
@@ -59,7 +59,7 @@
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
-                    <button  class="btn col-md-3 mt-5 offset-md-5 " type="submit">{% trans "Submit" %}</button>
+                    <button  class="btn col-md-3 mt-5 offset-md-5 " type="submit" id="submit">{% trans "Submit" %}</button>
                 </form>   
 
             </div>

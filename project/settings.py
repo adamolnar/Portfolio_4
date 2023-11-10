@@ -164,5 +164,6 @@ ACCOUNT_SESSION_REMEMBER = True
 
 # Custom ErrorList form for signup.html
 ACCOUNT_FORMS = {
-  'signup': 'users.forms.CustomSignUpForm'
+  'signup': 'users.forms.CustomSignUpForm',
+  'login': 'users.forms.CustomLoginForm',
 }
