@@ -379,7 +379,8 @@ svg {
 
 .error-p {
   padding: 2px ;
-  margin: 0;
+  margin-left: 20px;
+  line-height: 1;
 }
 
 .my-row {
@@ -417,4 +418,8 @@ form#signup_form {
 
 input {
     width: 50%;
+}
+
+.flex {
+  margin-top: 10px;
 }
