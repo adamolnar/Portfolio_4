@@ -36,10 +36,26 @@
                     {{ post.content | safe }}
                 </p>
                 <div class="row">
-
+                    
                     <div class="col-1">
                         <!-- The number of likes goes before the closing strong tag -->
-                        <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }} </strong>
+                        <strong class="text-secondary">
+                            {% if user.is_authenticated %}
+                            <form class="d-inline" action="{% url 'post_like' post.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if liked %}
+                                <button style="padding: 0; border: none; background: none;" type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-heart" style="color: red;"></i></button>
+                                 {% else %}
+                                <button style="padding: 0; border: none; background: none;" type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                                {% endif %}
+                            </form>
+                            {% else %}
+                            <span class="text-secondary"><i class="far fa-heart"></i></span>
+                            {% endif %}
+                        <!-- The number of likes goes before the closing strong tag -->
+                        <span class="text-secondary">{{ post.number_of_likes }} </span>
+                        </strong>
+                        <!-- <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_likes }} </strong> -->
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
@@ -99,7 +115,7 @@
                 </form>
                 {% endif %}
                 {% endif %}
-                
+
             </div>
         </div>
     </div>

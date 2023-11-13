@@ -41,7 +41,22 @@
                         <a class="btn btn-primary" href="{% url 'post_detail' post.slug %}">Read more →</a>
                         <hr />
                         <p class="card-text text-muted h6">{{ post.created_on}} 
-                           <i class="far fa-heart" style="float: right;"> {{ post.number_of_likes }}  </i>
+
+                            <strong class="text-secondary" style="float: right;">
+                                {% if user.is_authenticated %}
+                                    {% if liked %}
+                                    <button style="padding: 0; border: none; background: none;" type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-heart" style="color: red;"></i></button>
+                                     {% else %}
+                                    <button style="padding: 0; border: none; background: none;" type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                                    {% endif %}
+                                {% else %}
+                                <span class="text-secondary"><i class="far fa-heart"></i></span>
+                                {% endif %}
+                            <!-- The number of likes goes before the closing strong tag -->
+                            <span class="text-secondary">{{ post.number_of_likes }} </span>
+                            </strong>
+
+                           <!-- <i class="far fa-heart" style="float: right;"> {{ post.number_of_likes }}  </i> -->
                            
                         </p>
                     </div>
