@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['portfolio4-4e23d6cdeeab.herokuapp.com','8000-adamolnar-portfolio4-hygjwyuh38g.ws-eu106.gitpod.io']
-
+CSRF_TRUSTED_ORIGINS = ['https://8000-adamolnar-portfolio4-hygjwyuh38g.ws-eu106.gitpod.io']
 
 # Application definition
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django_summernote',
+    'crispy_forms',
     'app',
 ]
 
@@ -59,6 +60,8 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 LOGOT_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -69,10 +72,10 @@ MESSAGE_TAGS = {
 }
 
 MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
