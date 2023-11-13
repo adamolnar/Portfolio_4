@@ -46,7 +46,7 @@
                                 {% if liked %}
                                 <button style="padding: 0; border: none; background: none;" type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="fas fa-heart" style="color: red;"></i></button>
                                  {% else %}
-                                <button style="padding: 0; border: none; background: none;" type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart"></i></button>
+                                <button style="padding: 0; border: none; background: none;" type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-like"><i class="far fa-heart" style="color: red;"></i></button>
                                 {% endif %}
                             </form>
                             {% else %}
@@ -73,52 +73,38 @@
             <hr>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Comments:</h3>
-            <div class="card-body">
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
-                            <!-- The comment's created date goes here -->
-                            {{ comment.created_on }}
-                        </span> wrote:
-                    </p>
-                    <!-- The body of the comment goes before the | -->
-                    {{ comment.body | linebreaks }}
-                </div>
-                <!-- Our for loop ends here -->
-                {% endfor %}
-            </div>
-        </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
-            <div class="card-body">
-                <!-- For later -->
 
-                {% if commented %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is awaiting approval
-                </div>
-                {% else %}
-                {% if user.is_authenticated %}
+    <!-- Comments Form --> 
+<h2>Add a new comment</h2>
+<form action="." method="post">
+    {{ comment_form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Add comment</button>
+</form>
 
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
-                {% endif %}
-                {% endif %}
+<!-- Comment with nested comments -->
+{% for comment in comments %}
+    <div class="comment" style="background-color: powderblue">
+        <p class="info">{{ comment.name }} | {{ comment.created }}</p>
+            {{ comment.body|linebreaks }}
 
-            </div>
-        </div>
+        {% for replay in comment.replies.all %}
+            <p class="info">{{ replay.name }} | {{ replay.created }}</p>
+            <li>{{ replay.body }}</li>
+        {% endfor %}
+
+        <h5>Replay</h5>
+        <form action="." method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <!-- Hidden input for parent comment.id -->
+            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+            <input class="btn btn-primary" type="submit" value="Replay">
+        </form>
     </div>
+{% empty %}
+<h4>There are no comments yet.</h4>
+{% endfor %}
 </div>
 
 

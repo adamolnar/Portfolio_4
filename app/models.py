@@ -39,6 +39,8 @@ class Comment(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
+    parent = models.ForeignKey("self", related_name='children', null=True, blank=True, on_delete=models.CASCADE)
+
 
     class Meta:
         ordering = ["created_on"]
