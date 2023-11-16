@@ -9,7 +9,7 @@
         <div class="row col-md-12 masthead-image" >
             <!-- The featured image URL goes in the src attribute -->
             {% if "placeholder" in post.featured_image.url %}
-            <img src="https://res.cloudinary.com/dmg7oqpgs/image/upload/v1698830526/Project_4/masthead_wxqbsd.jpg" width="100%">
+            <img src="https://res.cloudinary.com/dmg7oqpgs/image/upload/v1698830526/Project_4/masthead_wxqbsd.jpg" style="width: 100%; height: 200px;">
             {% else %}
             <img src=" {{ post.featured_image.url }}" width="100%">
             {% endif %}
@@ -74,39 +74,71 @@
         </div>
     </div>
 
-    <!-- Comments Form --> 
-<h2>Add a new comment</h2>
-<form action="." method="post">
-    {{ comment_form.as_p }}
-    {% csrf_token %}
-    <button type="submit">Add comment</button>
-</form>
-
-<!-- Comment with nested comments -->
-{% for comment in comments %}
-    <div class="comment" style="background-color: powderblue">
-        <p class="info">{{ comment.name }} | {{ comment.created }}</p>
-            {{ comment.body|linebreaks }}
-
-        {% for replay in comment.replies.all %}
-            <p class="info">{{ replay.name }} | {{ replay.created }}</p>
-            <li>{{ replay.body }}</li>
-        {% endfor %}
-
-        <h5>Replay</h5>
-        <form action="." method="post">
-            {{ comment_form.as_p }}
-            {% csrf_token %}
-            <!-- Hidden input for parent comment.id -->
-            <input type="hidden" name="parent_id" value="{{ comment.id }}">
-            <input class="btn btn-primary" type="submit" value="Replay">
-        </form>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
     </div>
-{% empty %}
-<h4>There are no comments yet.</h4>
-{% endfor %}
+    <div class="row">
+        <div class="col-md-8 card mb-4  mt-3 ">
+            <h3>Comments:</h3>
+            <div class="card-body">
+                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+                {% for comment in comments %}
+                <div class="comments" style="padding: 10px;">
+                    <p class="font-weight-bold">
+                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                        {{ comment.name }}
+                        <span class=" text-muted font-weight-normal">
+                            <!-- The comment's created date goes here -->
+                            {{ comment.created_on }}
+                        </span> wrote:
+                    </p>
+                    <!-- The body of the comment goes before the | -->
+                    {{ comment.body | linebreaks }}
+                </div>
+                {% empty %}
+                <p>There are no comments yet.</p>
+                <!-- Our for loop ends here -->
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="card-body">
+                <!-- For later -->
+                    {% if user.is_authenticated %}
+                    <p id="x" style="display: block;">Posting as: {{ user.username }}</p>
+                    <form id="x"  method="post" style=" margin-top: 1.3em; display: block;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class=" btn btn-success btn-lg">Submit</button>
+                    </form>
+
+                        {% if commented %}
+                        <div  class="alert alert-success" role="alert"> 
+                            Your comment is awaiting approval.
+                        </div> 
+                        
+                        {% endif %} 
+
+                    
+                    {% else %}
+                    <h3>Leave a comment:</h3>
+                    <div class="alert alert-danger "  role="alert">
+                        You are not registered. If you would like to leave a comment lease register <a href="{% url 'account_signup' %}" class="alert-link">here</a>
+                    </div>
+                    
+                    {% endif %} 
+                
+
+                
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
 
 {% endblock content %}
+
